@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 
 export class SearchItem {
   constructor(
-    public links: string
+    public links: string,
   ) { }
 }
 
@@ -16,30 +18,29 @@ export class SearchServiceService {
     this.results = [];
   }
 
-  // getAlbums() {
-  //   return this.http.get('https://jsonplaceholder.typicode.com/albums');
-  // }
-
   apiRoot: string = 'https://images-api.nasa.gov/search?q=';
   results: SearchItem[];
 
   search(term: string) {
     let apiURL = `${this.apiRoot}${term}&media_type=image`;
     let promise = new Promise((resolve, reject) => {
-      this.http.get(apiURL)
+      this.http
+        .get<SearchItem[]>(apiURL)
         .toPromise()
-        .then(
-          (res: any) => {
-            console.log(apiURL);
-            this.results = this.results.map(item => {
-              return new SearchItem(
-                item.links,
-              );
-            })
-            console.log(res);
-          },
-          msg => { reject() }
-        )
+        .then((res: any) => {
+          console.log(apiURL);
+          this.results = res.map((res: any) => {
+            return new SearchItem(
+              res.links
+            );
+          }
+          );
+          resolve();
+        },
+          err => {
+            reject(err);
+          }
+        );
     });
     return promise;
   }

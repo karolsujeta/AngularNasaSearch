@@ -7,6 +7,7 @@ import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayComponent } from './components/display/display.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
