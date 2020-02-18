@@ -1,0 +1,10 @@
+<p>search works!</p>
+
+<div class="data-search">
+    <input type="text" placeholder="Wyszukaj Dane" #search>
+    <button class="send" (click)="doSearch(search.value)">Przeszukaj!</button>
+</div>
+
+<div class="result-box" *ngFor="let result of searchService.results">
+    <h1>{{result.link}}</h1>
+</div>
