@@ -5,6 +5,6 @@
     <button class="send" (click)="doSearch(search.value)">Przeszukaj!</button>
 </div>
 
-<div class="result-box" *ngFor="let result of searchService.results">
-    <h1>{{result.link}}</h1>
+<div class="result-box" *ngFor="let result of searchServiceService.results">
+    <p>{{result.link}}</p>
 </div>

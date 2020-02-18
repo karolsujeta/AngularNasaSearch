@@ -1,18 +1,5 @@
 import { Component, OnInit, Query } from '@angular/core';
 import { SearchServiceService } from '../search-service.service';
-// const axios = require('axios');
-
-// export default {
-//   name: 'search',
-//   data() {
-//     return {
-//       msg: 'Search',
-//       query: '',
-//       results: ''
-//     }
-//   },
-
-// }
 
 @Component({
   selector: 'app-search',
